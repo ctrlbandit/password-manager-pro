@@ -810,31 +810,30 @@
                     const historyItem = document.createElement('div');
                     historyItem.className = 'history-item';
                     
-                    // Create password display with strength indicator
+                  
                     const passwordDisplay = document.createElement('span');
                     passwordDisplay.className = 'history-password';
                     passwordDisplay.textContent = '•'.repeat(entry.password.length);
                     passwordDisplay.dataset.password = entry.password;
                     passwordDisplay.dataset.revealed = 'false';
                     
-                    // Apply color based on strength
+           
                     let strengthClass = '';
                     if (entry.strength <= 1) strengthClass = 'danger';
                     else if (entry.strength <= 3) strengthClass = 'warning';
                     else strengthClass = 'success';
                     
-                    // Create date display
+                
                     const dateDisplay = document.createElement('small');
                     dateDisplay.style.marginLeft = '10px';
                     dateDisplay.style.color = '#7f8c8d';
                     const date = new Date(entry.timestamp);
                     dateDisplay.textContent = date.toLocaleString();
-                    
-                    // Create actions container
+         
                     const actions = document.createElement('div');
                     actions.className = 'history-actions';
                     
-                    // Show/hide button
+         
                     const toggleBtn = document.createElement('button');
                     toggleBtn.innerHTML = '<i class="fas fa-eye"></i>';
                     toggleBtn.title = 'Show/Hide Password';
@@ -849,8 +848,7 @@
                             toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
                         }
                     });
-                    
-                    // Copy button
+       
                     const copyBtn = document.createElement('button');
                     copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
                     copyBtn.title = 'Copy to Clipboard';
@@ -861,8 +859,7 @@
                             console.error('Could not copy text: ', err);
                         });
                     });
-                    
-                    // Delete button
+  
                     const deleteBtn = document.createElement('button');
                     deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
                     deleteBtn.title = 'Delete Password';
@@ -874,7 +871,6 @@
                         showNotification('Password removed from history!');
                     });
                     
-                    // Add all elements to history item
                     historyItem.appendChild(passwordDisplay);
                     historyItem.appendChild(dateDisplay);
                     actions.appendChild(toggleBtn);
@@ -885,8 +881,7 @@
                     passwordHistoryContainer.appendChild(historyItem);
                 });
             }
-            
-            // Clear history button
+
             clearHistoryBtn.addEventListener('click', () => {
                 if (confirm('Are you sure you want to clear all saved passwords?')) {
                     localStorage.removeItem('passwordHistory');
@@ -894,8 +889,7 @@
                     showNotification('Password history cleared!');
                 }
             });
-            
-            // Show notification
+
             function showNotification(message) {
                 notification.textContent = message;
                 notification.classList.add('show');
@@ -904,8 +898,6 @@
                     notification.classList.remove('show');
                 }, 3000);
             }
-            
-            // Initialize
             generatePassword();
             updatePasswordHistory();
         });
